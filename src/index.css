@@ -200,3 +200,50 @@ input:focus, textarea:focus {
     radial-gradient(at 80% 50%, rgba(236, 72, 153, 0.08) 0px, transparent 50%),
     radial-gradient(at 0% 100%, rgba(59, 130, 246, 0.12) 0px, transparent 50%);
 }
+
+/* Hide scrollbar for testimonial carousel */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* iPhone-style icon shadow */
+.icon-3d {
+  box-shadow:
+    0 4px 12px rgba(0,0,0,0.1),
+    0 2px 4px rgba(0,0,0,0.08),
+    inset 0 1px 0 rgba(255,255,255,0.4),
+    inset 0 -1px 0 rgba(0,0,0,0.05);
+}
+
+/* Testimonial card shadow */
+.testimonial-card {
+  box-shadow: 0 4px 20px rgba(14,165,233,0.08), 0 2px 8px rgba(0,0,0,0.04);
+}
+
+/* Soft blue gradient backgrounds */
+.bg-soft-blue {
+  background: linear-gradient(180deg, #f0f9ff 0%, #e0f2fe 50%, #bae6fd 100%);
+}
+
+/* Table styles for GEO comparison */
+.geo-table th {
+  font-weight: 600;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.geo-table tr:hover td {
+  background-color: rgba(14,165,233,0.03);
+}
+
+/* Smooth testimonial scroll animation */
+@keyframes testimonial-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}

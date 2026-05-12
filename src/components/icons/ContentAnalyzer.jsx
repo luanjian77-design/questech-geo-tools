@@ -1,7 +1,21 @@
 export default function ContentAnalyzerIcon() {
   return (
-    <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+    <svg className="w-8 h-8" viewBox="0 0 32 32" fill="none">
+      {/* Bar chart base */}
+      <rect x="6" y="20" width="4" height="8" rx="1" fill="currentColor" fillOpacity="0.6" />
+      <rect x="12" y="14" width="4" height="14" rx="1" fill="currentColor" fillOpacity="0.75" />
+      <rect x="18" y="8" width="4" height="20" rx="1" fill="currentColor" fillOpacity="0.85" />
+      <rect x="24" y="5" width="4" height="23" rx="1" fill="currentColor" />
+      {/* Trend line */}
+      <path 
+        d="M8 18L14 12L20 15L26 7" 
+        stroke="white" 
+        strokeWidth="2" 
+        strokeLinecap="round" 
+        strokeLinejoin="round"
+      />
+      {/* Dot on trend */}
+      <circle cx="26" cy="7" r="2" fill="white" />
     </svg>
   )
 }
