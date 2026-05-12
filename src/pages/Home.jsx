@@ -6,7 +6,7 @@ import ContentAnalyzerIcon from '../components/icons/ContentAnalyzer'
 import { 
   Zap, TrendingUp, Brain, Shield, 
   ChevronRight, Star, ArrowRight, 
-  BarChart3, Target, Sparkles,
+  Target, Sparkles,
   Search, FileText, Quote
 } from 'lucide-react'
 
@@ -25,6 +25,17 @@ const tools = [
     category: '内容分析',
     Icon: ContentAnalyzerIcon,
   },
+]
+
+const heroCodeLines = [
+  'const geoScore = aiVisibility * authoritySignal',
+  'if (content.semanticClarity > 0.9) return citedByLLM',
+  'schema.markup({ faq: true, citations: authority })',
+  'promptIndex += entityGraph + structuredHeadings',
+  'vectorSearch(query).rankBy(relevance, freshness)',
+  'content.optimize({ model: "qwen", source: "kimi" })',
+  'answerEngine.include(brand, stats, expertQuotes)',
+  'embedding.match(intent).boost("geo-ready")',
 ]
 
 // iPhone-style icon component with soft 3D effect
@@ -139,14 +150,12 @@ const geoSeoComparison = [
   { aspect: '适用场景', seo: 'Google、Bing 传统搜索', geo: '豆包、通义千问、Kimi 等 AI 搜索' },
 ]
 
-// Section label component - consistent across all sections
 const SectionLabel = ({ children }) => (
   <span className="inline-block px-4 py-1.5 bg-slate-100 text-sky-600 rounded-full text-sm font-semibold">
     {children}
   </span>
 )
 
-// Section header component - left-aligned, consistent
 const SectionHeader = ({ label, title, subtitle, align = 'left' }) => (
   <div className={`mb-12 ${align === 'center' ? 'text-center' : 'text-left'}`}>
     <div className={`mb-5 ${align === 'center' ? 'flex justify-center' : ''}`}>
@@ -185,10 +194,29 @@ export default function Home() {
 
   return (
     <Layout>
-      {/* ========== HERO SECTION ========== */}
       <section className="relative overflow-hidden" style={{
-        background: 'linear-gradient(180deg, #f0f9ff 0%, #e0f2fe 50%, #bae6fd 100%)',
+        background: 'linear-gradient(180deg, #eef8ff 0%, #dff2ff 52%, #b7e5fb 100%)',
       }}>
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          <div className="hero-code-grid" />
+          <div className="hero-flash-glow hero-flash-glow-1" />
+          <div className="hero-flash-glow hero-flash-glow-2" />
+          <div className="hero-scanline" />
+          {heroCodeLines.map((line, index) => (
+            <div
+              key={index}
+              className="hero-code-line"
+              style={{
+                left: `${4 + index * 12}%`,
+                animationDelay: `${index * 1.3}s`,
+                animationDuration: `${12 + (index % 4) * 2}s`,
+              }}
+            >
+              {line}
+            </div>
+          ))}
+        </div>
+
         <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
           <div className="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] rounded-full" style={{
             background: 'radial-gradient(circle, rgba(14,165,233,0.15) 0%, transparent 70%)',
@@ -202,14 +230,7 @@ export default function Home() {
         </div>
         
         <div className="relative max-w-6xl mx-auto px-4 pt-20 pb-28">
-          <div className="flex justify-center mb-8">
-            <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/80 backdrop-blur-sm shadow-md border border-sky-100">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-              <span className="text-sm font-semibold text-sky-700">GEO 时代内容优化标准工具</span>
-            </div>
-          </div>
-          
-          <h1 className="text-center mb-6">
+          <h1 className="text-center mb-6 pt-4">
             <span className="block text-5xl md:text-6xl lg:text-7xl font-bold text-slate-800 mb-4 tracking-tight">
               让 AI 更好地
             </span>
@@ -269,7 +290,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ========== GEO INTRO SECTION ========== */}
       <section id="geo-intro" className="py-20 bg-white">
         <div className="max-w-6xl mx-auto px-4">
           <SectionHeader 
@@ -370,7 +390,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ========== TOOLS SECTION ========== */}
       <section id="tools" className="py-24" style={{ background: 'linear-gradient(180deg, #ffffff 0%, #f0f9ff 100%)' }}>
         <div className="max-w-6xl mx-auto px-4">
           <SectionHeader 
@@ -389,7 +408,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ========== FEATURES SECTION ========== */}
       <section id="features" className="py-24 bg-white">
         <div className="max-w-6xl mx-auto px-4">
           <SectionHeader 
@@ -414,7 +432,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ========== HOW IT WORKS ========== */}
       <section className="py-24" style={{ background: 'linear-gradient(180deg, #f0f9ff 0%, #e0f2fe 100%)' }}>
         <div className="max-w-6xl mx-auto px-4">
           <SectionHeader 
@@ -448,7 +465,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ========== TESTIMONIALS ========== */}
       <section className="py-24 bg-white overflow-hidden">
         <div className="max-w-6xl mx-auto px-4 mb-10">
           <div className="flex items-center gap-3">
@@ -468,35 +484,35 @@ export default function Home() {
             }}
           >
             {[...testimonials, ...testimonials].map((t, i) => (
-            <div 
-              key={i} 
-              className="flex-shrink-0 w-[380px] bg-white rounded-2xl p-7 shadow-lg border border-slate-100"
-              style={{
-                boxShadow: '0 4px 20px rgba(14,165,233,0.08), 0 2px 8px rgba(0,0,0,0.04)'
-              }}
-            >
-              <div className="flex gap-1 mb-4">
-                {[...Array(t.rating)].map((_, j) => (
-                  <Star key={j} className="w-4 h-4 text-amber-400 fill-amber-400" />
-                ))}
-              </div>
-              
-              <div className="relative mb-5">
-                <Quote className="absolute -top-1 -left-1 w-5 h-5 text-sky-200" />
-                <p className="text-slate-700 leading-relaxed pl-4 text-[15px]">"{t.quote}"</p>
-              </div>
-              
-              <div className="flex items-center gap-3 pt-4 border-t border-slate-100">
-                <div className={`w-10 h-10 rounded-full bg-gradient-to-br ${t.avatarBg} flex items-center justify-center text-white font-bold text-sm shadow-md`}>
-                  {t.avatar}
+              <div 
+                key={i} 
+                className="flex-shrink-0 w-[380px] bg-white rounded-2xl p-7 shadow-lg border border-slate-100"
+                style={{
+                  boxShadow: '0 4px 20px rgba(14,165,233,0.08), 0 2px 8px rgba(0,0,0,0.04)'
+                }}
+              >
+                <div className="flex gap-1 mb-4">
+                  {[...Array(t.rating)].map((_, j) => (
+                    <Star key={j} className="w-4 h-4 text-amber-400 fill-amber-400" />
+                  ))}
                 </div>
-                <div>
-                  <div className="font-semibold text-slate-900 text-sm">{t.author}</div>
-                  <div className="text-slate-500 text-xs">{t.role} · {t.company}</div>
+                
+                <div className="relative mb-5">
+                  <Quote className="absolute -top-1 -left-1 w-5 h-5 text-sky-200" />
+                  <p className="text-slate-700 leading-relaxed pl-4 text-[15px]">"{t.quote}"</p>
+                </div>
+                
+                <div className="flex items-center gap-3 pt-4 border-t border-slate-100">
+                  <div className={`w-10 h-10 rounded-full bg-gradient-to-br ${t.avatarBg} flex items-center justify-center text-white font-bold text-sm shadow-md`}>
+                    {t.avatar}
+                  </div>
+                  <div>
+                    <div className="font-semibold text-slate-900 text-sm">{t.author}</div>
+                    <div className="text-slate-500 text-xs">{t.role} · {t.company}</div>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
           </div>
         </div>
         
@@ -505,7 +521,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ========== CTA SECTION ========== */}
       <section className="py-24" style={{ background: 'linear-gradient(180deg, #f0f9ff 0%, #e0f2fe 100%)' }}>
         <div className="max-w-6xl mx-auto px-4 text-center">
           <div className="mb-5">
