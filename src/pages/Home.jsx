@@ -14,7 +14,7 @@ const tools = [
   {
     id: 'content-optimizer',
     title: '内容优化工具',
-    description: '输入文本内容，获取 AI 驱动的 GEO 优化建议。提升内容在 Gemini、ChatGPT 等 AI 搜索引擎中的引用率。',
+    description: '输入文本内容，获取 AI 驱动的 GEO 优化建议。提升内容在 豆包、通义千问、Kimi、元宝、Gemini、ChatGPT 等 AI 搜索引擎中的引用率。',
     category: '内容优化',
     Icon: ContentOptimizerIcon,
   },
@@ -236,7 +236,7 @@ export default function Home() {
           
           <p className="text-center text-xl md:text-2xl text-slate-600 mb-14 max-w-3xl mx-auto leading-relaxed">
             Questech GEO Tools 帮助内容创作者优化文本结构与语义，<br className="hidden md:block" />
-            提升在 <span className="text-sky-600 font-semibold">Gemini</span>、<span className="text-indigo-600 font-semibold">ChatGPT</span>、<span className="text-violet-600 font-semibold">Perplexity</span> 等 AI 搜索引擎中的引用率
+            提升在 <span className="text-sky-600 font-semibold">Gemini</span>、<span className="text-indigo-600 font-semibold">ChatGPT</span>、<span className="text-violet-600 font-semibold">Perplexity</span>、<span className="text-amber-600 font-semibold">豆包</span>、<span className="text-emerald-600 font-semibold">通义千问</span>、<span className="text-pink-600 font-semibold">Kimi</span>、<span className="text-orange-600 font-semibold">元宝</span> 等 AI 搜索引擎中的引用率
           </p>
           
           {/* CTA */}

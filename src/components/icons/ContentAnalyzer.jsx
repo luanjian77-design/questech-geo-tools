@@ -1,21 +1,21 @@
 export default function ContentAnalyzerIcon() {
   return (
-    <svg className="w-8 h-8" viewBox="0 0 32 32" fill="none">
-      {/* Bar chart base */}
-      <rect x="6" y="20" width="4" height="8" rx="1" fill="currentColor" fillOpacity="0.6" />
-      <rect x="12" y="14" width="4" height="14" rx="1" fill="currentColor" fillOpacity="0.75" />
-      <rect x="18" y="8" width="4" height="20" rx="1" fill="currentColor" fillOpacity="0.85" />
-      <rect x="24" y="5" width="4" height="23" rx="1" fill="currentColor" />
-      {/* Trend line */}
+    <svg className="w-9 h-9" viewBox="0 0 36 36" fill="none">
+      {/* Chart background panel */}
+      <rect x="4" y="6" width="28" height="24" rx="3" fill="currentColor" fillOpacity="0.3" />
+      {/* Bars */}
+      <rect x="8" y="20" width="5" height="8" rx="1.5" fill="white" fillOpacity="0.6" />
+      <rect x="15" y="14" width="5" height="14" rx="1.5" fill="white" fillOpacity="0.8" />
+      <rect x="22" y="10" width="5" height="18" rx="1.5" fill="white" />
+      {/* Trend arrow */}
       <path 
-        d="M8 18L14 12L20 15L26 7" 
+        d="M10 18L16 12L22 16L28 8" 
         stroke="white" 
         strokeWidth="2" 
         strokeLinecap="round" 
         strokeLinejoin="round"
+        fillOpacity="0.7"
       />
-      {/* Dot on trend */}
-      <circle cx="26" cy="7" r="2" fill="white" />
     </svg>
   )
 }

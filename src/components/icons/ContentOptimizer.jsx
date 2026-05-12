@@ -1,31 +1,21 @@
 export default function ContentOptimizerIcon() {
   return (
-    <svg className="w-8 h-8" viewBox="0 0 32 32" fill="none">
+    <svg className="w-9 h-9" viewBox="0 0 36 36" fill="none">
+      {/* Document base */}
+      <rect x="6" y="4" width="24" height="28" rx="3" fill="currentColor" fillOpacity="0.3" />
+      <rect x="6" y="4" width="24" height="8" rx="3" fill="currentColor" fillOpacity="0.5" />
+      {/* Lines representing text */}
+      <rect x="10" y="16" width="16" height="2.5" rx="1" fill="white" fillOpacity="0.9" />
+      <rect x="10" y="20.5" width="12" height="2.5" rx="1" fill="white" fillOpacity="0.7" />
+      <rect x="10" y="25" width="14" height="2.5" rx="1" fill="white" fillOpacity="0.7" />
+      {/* Sparkle / optimization indicator */}
+      <circle cx="28" cy="9" r="5" fill="white" />
       <path 
-        d="M16 4L4 9v14l12 5 12-5V9L16 4z" 
-        fill="currentColor" 
-        fillOpacity="0.2"
-      />
-      <path 
-        d="M16 4L4 9l12 5 12-5-12-5z" 
-        fill="currentColor" 
-        fillOpacity="0.4"
-      />
-      <path 
-        d="M4 9v14l12 5V14L4 9z" 
-        fill="currentColor" 
-        fillOpacity="0.3"
-      />
-      <path 
-        d="M28 9v14l-12 5V14l12-5z" 
-        fill="currentColor" 
-        fillOpacity="0.5"
-      />
-      <path 
-        d="M16 14v9M13 17h6" 
-        stroke="white" 
-        strokeWidth="2.5" 
+        d="M28 6.5v5M25.5 9h5" 
+        stroke="currentColor" 
+        strokeWidth="1.8" 
         strokeLinecap="round"
+        fillOpacity="0.5"
       />
     </svg>
   )
