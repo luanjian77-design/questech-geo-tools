@@ -457,16 +457,17 @@ export default function Home() {
           </div>
         </div>
         
-        <div 
-          ref={scrollRef}
-          className="flex gap-6 overflow-x-auto scrollbar-hide pb-4 px-4"
-          style={{ 
-            scrollbarWidth: 'none', 
-            msOverflowStyle: 'none',
-            scrollBehavior: 'smooth',
-          }}
-        >
-          {[...testimonials, ...testimonials].map((t, i) => (
+        <div className="max-w-6xl mx-auto">
+          <div 
+            ref={scrollRef}
+            className="flex gap-6 overflow-x-auto scrollbar-hide pb-4 px-4"
+            style={{ 
+              scrollbarWidth: 'none', 
+              msOverflowStyle: 'none',
+              scrollBehavior: 'smooth',
+            }}
+          >
+            {[...testimonials, ...testimonials].map((t, i) => (
             <div 
               key={i} 
               className="flex-shrink-0 w-[380px] bg-white rounded-2xl p-7 shadow-lg border border-slate-100"
@@ -496,6 +497,7 @@ export default function Home() {
               </div>
             </div>
           ))}
+          </div>
         </div>
         
         <div className="text-center mt-6 text-slate-400 text-sm">
