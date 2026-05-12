@@ -9,7 +9,8 @@ export default function ToolCard({ id, title, description, category, Icon }) {
       onClick={handleClick}
       className="group relative w-full bg-white rounded-3xl p-9 shadow-md hover:shadow-2xl transition-all duration-500 border border-sky-100 overflow-hidden text-left card-hover"
       style={{
-        boxShadow: '0 4px 20px rgba(14,165,233,0.06), 0 2px 8px rgba(0,0,0,0.04)'
+        boxShadow: '0 4px 20px rgba(14,165,233,0.06), 0 2px 8px rgba(0,0,0,0.04)',
+        minHeight: '220px',
       }}
     >
       {/* Background gradient on hover */}
@@ -18,7 +19,7 @@ export default function ToolCard({ id, title, description, category, Icon }) {
       {/* Subtle glow effect */}
       <div className="absolute -top-20 -right-20 w-40 h-40 bg-sky-400 rounded-full filter blur-3xl opacity-0 group-hover:opacity-10 transition-opacity duration-500" />
       
-      <div className="relative flex items-start gap-7">
+      <div className="relative flex flex-col items-start gap-6 h-full">
         {/* Icon container - iPhone style with 3D effect */}
         <div className="relative flex-shrink-0">
           <div 
@@ -40,14 +41,16 @@ export default function ToolCard({ id, title, description, category, Icon }) {
         </div>
         
         {/* Content */}
-        <div className="flex-1 min-w-0">
-          <h3 className="text-2xl font-bold text-slate-800 mb-3 group-hover:text-sky-600 transition-colors duration-300">
-            {title}
-          </h3>
-          <p className="text-slate-600 leading-relaxed text-base mb-5">{description}</p>
+        <div className="flex-1 min-w-0 flex flex-col justify-between">
+          <div>
+            <h3 className="text-2xl font-bold text-slate-800 mb-3 group-hover:text-sky-600 transition-colors duration-300">
+              {title}
+            </h3>
+            <p className="text-slate-600 leading-relaxed text-base">{description}</p>
+          </div>
           
           {/* Arrow indicator */}
-          <div className="flex items-center gap-2 text-sky-500 font-medium">
+          <div className="flex items-center gap-2 text-sky-500 font-medium mt-4">
             <span className="text-sm">立即使用</span>
             <svg className="w-5 h-5 transform group-hover:translate-x-2 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />

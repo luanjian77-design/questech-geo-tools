@@ -169,15 +169,13 @@ export default function Home() {
     if (!el) return
     
     let scrollPos = 0
-    let direction = 1
-    const speed = 0.5
+    const speed = 0.4
     
     const rafId = requestAnimationFrame(function step() {
       if (!el) return
-      const maxScroll = el.scrollWidth / 2 - el.clientWidth
-      scrollPos += speed * direction
-      if (scrollPos >= maxScroll) direction = -1
-      if (scrollPos <= 0) direction = 1
+      const maxScroll = el.scrollWidth / 2
+      scrollPos += speed
+      if (scrollPos >= maxScroll) scrollPos = 0
       el.scrollLeft = scrollPos
       requestAnimationFrame(step)
     })
@@ -452,13 +450,10 @@ export default function Home() {
 
       {/* ========== TESTIMONIALS ========== */}
       <section className="py-24 bg-white overflow-hidden">
-        <div className="max-w-6xl mx-auto px-4 mb-12">
-          <div className="text-left">
-            <div className="mb-5">
-              <SectionLabel>用户反馈</SectionLabel>
-            </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">真实用户的使用体验</h2>
-            <p className="text-slate-500">以下评价均来自真实用户反馈</p>
+        <div className="max-w-6xl mx-auto px-4 mb-10">
+          <div className="flex items-center gap-3">
+            <SectionLabel>用户反馈</SectionLabel>
+            <span className="text-slate-400 text-sm">真实用户使用体验</span>
           </div>
         </div>
         
@@ -504,7 +499,7 @@ export default function Home() {
         </div>
         
         <div className="text-center mt-6 text-slate-400 text-sm">
-          ← 拖动或自动滚动查看更多 →
+          ← 自动循环滚动 · 可左右拖动 →
         </div>
       </section>
 
