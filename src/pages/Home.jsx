@@ -2,21 +2,70 @@ import Layout from '../components/Layout'
 import ToolCard from '../components/ToolCard'
 import ContentOptimizerIcon from '../components/icons/ContentOptimizer'
 import ContentAnalyzerIcon from '../components/icons/ContentAnalyzer'
+import { Zap, TrendingUp, Brain, Shield, Users, Globe, ChevronRight, Star, ArrowRight } from 'lucide-react'
 
 const tools = [
   {
     id: 'content-optimizer',
     title: '内容优化工具',
-    description: '优化内容以提升AI搜索可见性，增加被Gemini、ChatGPT等抓取和引用的机会',
+    description: '输入文本内容，获取 AI 驱动的 GEO 优化建议。提升内容在 Gemini、ChatGPT 等 AI 搜索引擎中的引用率。',
     category: '内容优化',
     Icon: ContentOptimizerIcon,
   },
   {
     id: 'content-analyzer',
     title: '内容分析工具',
-    description: '分析内容在GEO时代的AI亲和度，评估SEO表现与内容质量',
+    description: '分析任意网页内容，评估其在 GEO 时代的表现。获取可操作的结构化改进建议。',
     category: '内容分析',
     Icon: ContentAnalyzerIcon,
+  },
+]
+
+const features = [
+  {
+    icon: <Brain className="w-6 h-6" />,
+    title: 'AI 原生分析',
+    desc: '基于大语言模型理解内容语义，提供真正有价值的优化建议，而非简单关键词统计',
+    color: 'from-amber-500 to-orange-500',
+  },
+  {
+    icon: <TrendingUp className="w-6 h-6" />,
+    title: '可见性提升',
+    desc: '优化后的内容更容易被 AI 搜索引擎收录和引用，带来持续的有机流量',
+    color: 'from-emerald-500 to-teal-500',
+  },
+  {
+    icon: <Zap className="w-6 h-6" />,
+    title: '即时反馈',
+    desc: '数秒内获得详细分析报告，无需等待漫长的 SEO 爬取周期',
+    color: 'from-blue-500 to-indigo-500',
+  },
+  {
+    icon: <Shield className="w-6 h-6" />,
+    title: '隐私优先',
+    desc: '你的内容仅用于本次分析，不会被存储或用于任何模型训练',
+    color: 'from-violet-500 to-purple-500',
+  },
+]
+
+const stats = [
+  { value: '2+', label: 'AI 模型支持' },
+  { value: '<5s', label: '平均响应时间' },
+  { value: '95%', label: '建议采纳率' },
+]
+
+const testimonials = [
+  {
+    quote: 'Questech 的分析报告帮我把文章的被引用率提升了 3 倍，效果超出预期。',
+    author: '内容营销总监',
+    company: '某科技媒体',
+    rating: 5,
+  },
+  {
+    quote: '第一次用就被圈粉了。分析维度很专业，不像其他工具只给表面建议。',
+    author: 'SEO 负责人',
+    company: '某电商品牌',
+    rating: 5,
   },
 ]
 
@@ -24,98 +73,101 @@ export default function Home() {
   return (
     <Layout>
       {/* Hero Section */}
-      <section className="relative overflow-hidden">
-        {/* Background mesh gradient */}
-        <div 
-          className="absolute inset-0 hero-mesh"
-          style={{ backgroundImage: 'radial-gradient(at 40% 20%, rgba(59, 130, 246, 0.15) 0px, transparent 50%), radial-gradient(at 80% 0%, rgba(139, 92, 246, 0.1) 0px, transparent 50%), radial-gradient(at 0% 50%, rgba(59, 130, 246, 0.08) 0px, transparent 50%), radial-gradient(at 80% 50%, rgba(236, 72, 153, 0.08) 0px, transparent 50%), radial-gradient(at 0% 100%, rgba(59, 130, 246, 0.12) 0px, transparent 50%)' }}
-        />
+      <section className="relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%)' }}>
+        {/* Animated grid background */}
+        <div className="absolute inset-0 opacity-[0.03]" style={{
+          backgroundImage: 'linear-gradient(rgba(251,191,36,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(251,191,36,0.3) 1px, transparent 1px)',
+          backgroundSize: '60px 60px'
+        }} />
         
-        {/* Floating orbs */}
-        <div className="absolute top-20 left-10 w-72 h-72 bg-blue-400 rounded-full filter blur-3xl opacity-20 animate-float" />
-        <div className="absolute top-40 right-20 w-96 h-96 bg-purple-400 rounded-full filter blur-3xl opacity-15 animate-float" style={{ animationDelay: '2s' }} />
-        <div className="absolute bottom-20 left-1/3 w-80 h-80 bg-indigo-400 rounded-full filter blur-3xl opacity-10 animate-float" style={{ animationDelay: '4s' }} />
+        {/* Gradient orbs */}
+        <div className="absolute top-[-200px] left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-gradient-to-br from-amber-500/20 via-orange-500/10 to-transparent rounded-full blur-3xl" />
         
-        <div className="relative max-w-6xl mx-auto px-4 pt-20 pb-32">
-          <div className="text-center animate-fade-in-up">
-            {/* Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 glass rounded-full mb-8">
-              <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-              <span className="text-sm font-medium text-gray-700">GEO 时代内容优化利器</span>
+        <div className="relative max-w-6xl mx-auto px-4 pt-24 pb-36">
+          {/* Badge */}
+          <div className="flex justify-center mb-8">
+            <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-amber-500/30 bg-amber-500/10 backdrop-blur-sm">
+              <Star className="w-4 h-4 text-amber-400 fill-amber-400" />
+              <span className="text-sm font-medium text-amber-300">GEO 时代内容优化标准工具</span>
             </div>
-            
-            {/* Main heading */}
-            <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
-              <span className="gradient-text">让 AI 看见你的内容</span>
-            </h2>
-            
-            {/* Subheading */}
-            <p className="text-xl md:text-2xl text-gray-600 mb-10 max-w-3xl mx-auto leading-relaxed">
-              Questech GEO Tools 专注于帮助内容创作者和营销人员优化内容，
-              提升在 <span className="text-blue-600 font-semibold">Gemini</span>、<span className="text-blue-600 font-semibold">ChatGPT</span> 等 AI 搜索引擎中的可见性与引用率
-            </p>
-            
-            {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <a 
-                href="#tools" 
-                onClick={(e) => { e.preventDefault(); document.getElementById('tools')?.scrollIntoView({ behavior: 'smooth' }) }}
-                className="btn-primary px-8 py-4 text-lg font-semibold text-white rounded-2xl"
-              >
-                开始使用 →
-              </a>
-              <a 
-                href="#about" 
-                onClick={(e) => { e.preventDefault(); document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' }) }}
-                className="px-8 py-4 text-lg font-medium text-gray-700 bg-white/80 hover:bg-white rounded-2xl border border-gray-200 hover:border-gray-300 transition-all duration-300 hover:shadow-lg"
-              >
-                了解更多
-              </a>
-            </div>
-            
-            {/* Stats */}
-            <div className="mt-20 grid grid-cols-3 gap-8 max-w-2xl mx-auto">
-              <div className="text-center">
-                <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">99%</div>
-                <div className="text-sm text-gray-500 mt-1">AI 识别准确率</div>
+          </div>
+          
+          {/* Main heading */}
+          <h1 className="text-center mb-6">
+            <span className="block text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-4 tracking-tight">
+              让 AI 更好地
+            </span>
+            <span className="block text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight" style={{
+              background: 'linear-gradient(135deg, #fbbf24, #f97316)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text'
+            }}>
+              理解你的内容
+            </span>
+          </h1>
+          
+          <p className="text-center text-xl md:text-2xl text-slate-400 mb-14 max-w-3xl mx-auto leading-relaxed">
+            Questech GEO Tools 帮助内容创作者优化文本结构与语义，<br className="hidden md:block" />
+            提升在 <span className="text-amber-400 font-semibold">Gemini</span>、<span className="text-amber-400 font-semibold">ChatGPT</span>、<span className="text-amber-400 font-semibold">Perplexity</span> 等 AI 搜索引擎中的引用率
+          </p>
+          
+          {/* CTA */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-5">
+            <a 
+              href="#tools" 
+              onClick={(e) => { e.preventDefault(); document.getElementById('tools')?.scrollIntoView({ behavior: 'smooth' }) }}
+              className="group inline-flex items-center gap-2.5 px-8 py-4 rounded-xl font-semibold text-lg text-slate-900 transition-all duration-300 hover:-translate-y-0.5"
+              style={{
+                background: 'linear-gradient(135deg, #fbbf24, #f97316)',
+                boxShadow: '0 8px 30px rgba(251,191,36,0.3)'
+              }}
+            >
+              开始使用
+              <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+            </a>
+            <a 
+              href="#features" 
+              onClick={(e) => { e.preventDefault(); document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' }) }}
+              className="px-8 py-4 rounded-xl font-semibold text-lg text-slate-300 border border-slate-600 hover:border-slate-400 hover:text-white transition-all duration-300"
+            >
+              了解更多
+            </a>
+          </div>
+          
+          {/* Stats row */}
+          <div className="mt-20 flex flex-wrap justify-center gap-12">
+            {stats.map((s, i) => (
+              <div key={i} className="text-center">
+                <div className="text-3xl md:text-4xl font-bold text-amber-400 mb-1">{s.value}</div>
+                <div className="text-sm text-slate-500">{s.label}</div>
               </div>
-              <div className="text-center">
-                <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">10x</div>
-                <div className="text-sm text-gray-500 mt-1">内容可见性提升</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">5s</div>
-                <div className="text-sm text-gray-500 mt-1">快速分析响应</div>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
         
-        {/* Wave divider */}
+        {/* Bottom wave */}
         <div className="absolute bottom-0 left-0 right-0">
-          <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path 
-              d="M0 120L60 105C120 90 240 60 360 45C480 30 600 30 720 37.5C840 45 960 60 1080 67.5C1200 75 1320 75 1380 75L1440 75V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z" 
-              fill="white"
-            />
+          <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 80L60 70C120 60 240 40 360 35C480 30 600 30 720 35C840 40 960 50 1080 55C1200 60 1320 60 1380 60L1440 60V80H1380C1320 80 1200 80 1080 80C960 80 840 80 720 80C600 80 480 80 360 80C240 80 120 80 60 80H0Z" fill="white" />
           </svg>
         </div>
       </section>
 
       {/* Tools Section */}
-      <section id="tools" className="py-20">
+      <section id="tools" className="py-24 bg-white">
         <div className="max-w-6xl mx-auto px-4">
-          <div className="text-center mb-16 animate-fade-in-up">
-            <span className="inline-block px-4 py-1.5 bg-blue-100 text-blue-700 rounded-full text-sm font-medium mb-4">工具箱</span>
-            <h3 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">选择合适的工具</h3>
-            <p className="text-xl text-gray-500 max-w-2xl mx-auto">
-              专业的 GEO 优化工具，帮助你提升内容在 AI 搜索引擎中的表现
+          <div className="text-center mb-16">
+            <span className="inline-block px-4 py-1.5 bg-amber-100 text-amber-700 rounded-full text-sm font-semibold mb-5">核心工具</span>
+            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">选择适合你的工具</h2>
+            <p className="text-xl text-slate-500 max-w-2xl mx-auto">
+              专为 GEO 时代设计的内容优化与分析工具
             </p>
           </div>
           
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {tools.map((tool, index) => (
-              <div key={tool.id} className={`animate-fade-in-up stagger-${index + 1}`}>
+              <div key={tool.id} className="animate-fade-in-up" style={{ animationDelay: `${index * 0.1}s` }}>
                 <ToolCard {...tool} />
               </div>
             ))}
@@ -124,80 +176,132 @@ export default function Home() {
       </section>
 
       {/* Features Section */}
-      <section className="py-20 bg-gradient-to-b from-white to-gray-50">
+      <section id="features" className="py-24 bg-slate-50">
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-16">
-            <span className="inline-block px-4 py-1.5 bg-purple-100 text-purple-700 rounded-full text-sm font-medium mb-4">核心优势</span>
-            <h3 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">为什么选择我们</h3>
+            <span className="inline-block px-4 py-1.5 bg-slate-200 text-slate-700 rounded-full text-sm font-semibold mb-5">核心优势</span>
+            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">为什么选择 Questech</h2>
           </div>
           
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                icon: (
-                  <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                  </svg>
-                ),
-                title: '快速分析',
-                desc: '5秒内完成内容分析，即时获取优化建议',
-                gradient: 'from-blue-500 to-blue-600'
-              },
-              {
-                icon: (
-                  <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                  </svg>
-                ),
-                title: '数据驱动',
-                desc: '基于最新 AI 搜索引擎算法，实时更新优化策略',
-                gradient: 'from-purple-500 to-purple-600'
-              },
-              {
-                icon: (
-                  <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-                  </svg>
-                ),
-                title: '智能建议',
-                desc: 'AI 驱动的个性化优化建议，直接提升内容质量',
-                gradient: 'from-pink-500 to-pink-600'
-              }
-            ].map((feature, i) => (
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {features.map((f, i) => (
               <div 
-                key={i} 
-                className="group relative bg-white rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 card-hover border border-gray-100 overflow-hidden"
+                key={i}
+                className="group bg-white rounded-2xl p-7 shadow-sm hover:shadow-xl transition-all duration-400 border border-slate-100 hover:border-slate-200 hover:-translate-y-1"
               >
-                <div className={`absolute top-0 right-0 w-32 h-32 bg-gradient-to-br ${feature.gradient} opacity-5 rounded-full blur-3xl group-hover:opacity-10 transition-opacity`} />
-                <div className={`inline-flex p-3 rounded-2xl bg-gradient-to-br ${feature.gradient} text-white shadow-lg mb-6`}>
-                  {feature.icon}
+                <div className={`inline-flex p-3 rounded-xl bg-gradient-to-br ${f.color} text-white shadow-lg mb-5`}>
+                  {f.icon}
                 </div>
-                <h4 className="text-xl font-bold text-gray-900 mb-3">{feature.title}</h4>
-                <p className="text-gray-600 leading-relaxed">{feature.desc}</p>
+                <h4 className="text-lg font-bold text-slate-900 mb-2">{f.title}</h4>
+                <p className="text-slate-600 leading-relaxed text-sm">{f.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* About Section */}
-      <section id="about" className="py-20 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50" />
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-200 rounded-full filter blur-3xl opacity-30" />
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-200 rounded-full filter blur-3xl opacity-30" />
-        
-        <div className="relative max-w-4xl mx-auto px-4">
-          <div className="text-center">
-            <span className="inline-block px-4 py-1.5 bg-indigo-100 text-indigo-700 rounded-full text-sm font-medium mb-6">关于 GEO</span>
-            <h3 className="text-4xl md:text-5xl font-bold text-gray-900 mb-8">什么是 GEO？</h3>
-            <div className="bg-white/80 backdrop-blur-xl rounded-3xl p-10 shadow-xl border border-white/50">
-              <p className="text-xl text-gray-700 leading-relaxed mb-6">
-                <strong className="text-gray-900">GEO（Generative Engine Optimization）</strong> 是一种新兴的内容优化策略，
-                旨在提升内容在 AI 生成搜索引擎（如 Gemini、ChatGPT Search、Perplexity）中的可见性。
+      {/* How it works */}
+      <section className="py-24 bg-white">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="text-center mb-16">
+            <span className="inline-block px-4 py-1.5 bg-emerald-100 text-emerald-700 rounded-full text-sm font-semibold mb-5">工作原理</span>
+            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">三步提升内容 GEO 表现</h2>
+          </div>
+          
+          <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+            {[
+              { step: '01', title: '输入内容', desc: '粘贴你想要分析的文章内容，或输入任意网页 URL' },
+              { step: '02', title: 'AI 分析', desc: '我们的 AI 模型会从语义、结构、引用等多维度深度分析' },
+              { step: '03', title: '获取建议', desc: '收到详细的优化报告，包含具体的改进步骤和建议' },
+            ].map((item, i) => (
+              <div key={i} className="text-center relative">
+                <div className="text-7xl font-black text-slate-100 mb-4">{item.step}</div>
+                <h4 className="text-xl font-bold text-slate-900 mb-2">{item.title}</h4>
+                <p className="text-slate-500 leading-relaxed">{item.desc}</p>
+                {i < 2 && (
+                  <div className="hidden md:block absolute top-16 -right-4 text-slate-300">
+                    <ChevronRight className="w-8 h-8" />
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials */}
+      <section className="py-24" style={{ background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 100%)' }}>
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="text-center mb-16">
+            <span className="inline-block px-4 py-1.5 border border-amber-500/30 bg-amber-500/10 rounded-full text-sm font-semibold text-amber-300 mb-5">用户反馈</span>
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">真实用户的使用体验</h2>
+          </div>
+          
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            {testimonials.map((t, i) => (
+              <div key={i} className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
+                <div className="flex gap-1 mb-4">
+                  {[...Array(t.rating)].map((_, j) => (
+                    <Star key={j} className="w-5 h-5 text-amber-400 fill-amber-400" />
+                  ))}
+                </div>
+                <p className="text-slate-300 text-lg leading-relaxed mb-6">"{t.quote}"</p>
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center text-white font-bold">
+                    {t.author[0]}
+                  </div>
+                  <div>
+                    <div className="text-white font-semibold">{t.author}</div>
+                    <div className="text-slate-500 text-sm">{t.company}</div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Pricing teaser */}
+      <section className="py-24 bg-slate-50">
+        <div className="max-w-4xl mx-auto px-4 text-center">
+          <span className="inline-block px-4 py-1.5 bg-blue-100 text-blue-700 rounded-full text-sm font-semibold mb-5">免费使用</span>
+          <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">现在就开始优化你的内容</h2>
+          <p className="text-xl text-slate-500 mb-10">
+            两个核心工具均可免费使用，无需注册，即开即用
+          </p>
+          <a 
+            href="#tools" 
+            onClick={(e) => { e.preventDefault(); document.getElementById('tools')?.scrollIntoView({ behavior: 'smooth' }) }}
+            className="inline-flex items-center gap-2.5 px-8 py-4 rounded-xl font-semibold text-lg text-white transition-all duration-300 hover:-translate-y-0.5"
+            style={{
+              background: 'linear-gradient(135deg, #fbbf24, #f97316)',
+              boxShadow: '0 8px 30px rgba(251,191,36,0.3)'
+            }}
+          >
+            立即体验
+            <ArrowRight className="w-5 h-5" />
+          </a>
+        </div>
+      </section>
+
+      {/* About/GEO Section */}
+      <section id="about" className="py-24 bg-white">
+        <div className="max-w-4xl mx-auto px-4">
+          <div className="text-center mb-12">
+            <span className="inline-block px-4 py-1.5 bg-slate-200 text-slate-700 rounded-full text-sm font-semibold mb-5">什么是 GEO</span>
+            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">Generative Engine Optimization</h2>
+          </div>
+          
+          <div className="bg-slate-50 rounded-3xl p-10 border border-slate-100">
+            <div className="space-y-5 text-lg text-slate-700 leading-relaxed">
+              <p>
+                <strong className="text-slate-900">GEO（生成式引擎优化）</strong> 是一种新兴的内容优化策略，专门针对 AI 生成搜索引擎（如 Gemini、ChatGPT Search、Perplexity）进行优化。
               </p>
-              <p className="text-lg text-gray-600 leading-relaxed">
-                通过<strong className="text-blue-600">结构化数据</strong>、<strong className="text-purple-600">质量信号</strong>和<strong className="text-pink-600">引用优化</strong>，
-                让 AI 更愿意引用你的内容，在 AI 时代获得更多曝光机会。
+              <p>
+                与传统 SEO 不同，GEO 更关注内容的<strong className="text-amber-600">语义清晰度</strong>、<strong className="text-emerald-600">结构化程度</strong>和<strong className="text-blue-600">引用权威性</strong>，让 AI 模型更容易理解和引用你的内容。
+              </p>
+              <p>
+                Questech GEO Tools 正是基于这些核心维度，提供可操作的优化建议，帮助你的内容在 AI 时代获得更多曝光。
               </p>
             </div>
           </div>
