@@ -278,7 +278,7 @@ export default function Home() {
             subtitle="Generative Engine Optimization — AI 时代的内容优化新范式"
           />
           
-          <div className="max-w-4xl mx-auto mb-14">
+          <div className="mb-14">
             <div className="bg-gradient-to-br from-sky-50 via-indigo-50 to-violet-50 rounded-3xl p-10 border border-sky-100">
               <div className="flex items-start gap-5 mb-6">
                 <div className="p-4 rounded-2xl bg-white shadow-md flex-shrink-0">
@@ -312,7 +312,7 @@ export default function Home() {
             </div>
           </div>
           
-          <div className="max-w-5xl mx-auto">
+          <div>
             <h3 className="text-2xl font-bold text-slate-900 mb-8">
               GEO vs 传统 SEO：核心差异
             </h3>
@@ -348,7 +348,7 @@ export default function Home() {
             </div>
           </div>
           
-          <div className="max-w-4xl mx-auto mt-14">
+          <div className="mt-14">
             <h3 className="text-2xl font-bold text-slate-900 mb-8">GEO 优化的四大核心要素</h3>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
               {[
@@ -379,7 +379,7 @@ export default function Home() {
             subtitle="专为 GEO 时代设计的内容优化与分析工具"
           />
           
-          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-8">
             {tools.map((tool, index) => (
               <div key={tool.id} className="animate-fade-in-up" style={{ animationDelay: `${index * 0.1}s` }}>
                 <ToolCard {...tool} />
@@ -422,7 +422,7 @@ export default function Home() {
             title="三步提升内容 GEO 表现" 
           />
           
-          <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+          <div className="grid md:grid-cols-3 gap-8">
             {[
               { step: '01', icon: <FileText className="w-8 h-8" />, title: '输入内容', desc: '粘贴你想要分析的文章内容，或输入任意网页 URL' },
               { step: '02', icon: <Brain className="w-8 h-8" />, title: 'AI 分析', desc: '我们的 AI 模型会从语义、结构、引用等多维度深度分析' },
@@ -505,7 +505,7 @@ export default function Home() {
 
       {/* ========== CTA SECTION ========== */}
       <section className="py-24" style={{ background: 'linear-gradient(180deg, #f0f9ff 0%, #e0f2fe 100%)' }}>
-        <div className="max-w-4xl mx-auto px-4 text-center">
+        <div className="max-w-6xl mx-auto px-4 text-center">
           <div className="mb-5">
             <span className="inline-block px-4 py-1.5 bg-slate-100 text-sky-600 rounded-full text-sm font-semibold">免费使用</span>
           </div>
