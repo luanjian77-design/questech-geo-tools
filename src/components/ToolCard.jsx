@@ -7,7 +7,7 @@ export default function ToolCard({ id, title, description, category, Icon }) {
   return (
     <button
       onClick={handleClick}
-      className="group relative w-full bg-white rounded-3xl p-8 shadow-md hover:shadow-2xl transition-all duration-500 border border-sky-100 overflow-hidden text-left card-hover"
+      className="group relative w-full bg-white rounded-3xl p-9 shadow-md hover:shadow-2xl transition-all duration-500 border border-sky-100 overflow-hidden text-left card-hover"
       style={{
         boxShadow: '0 4px 20px rgba(14,165,233,0.06), 0 2px 8px rgba(0,0,0,0.04)'
       }}
@@ -18,11 +18,11 @@ export default function ToolCard({ id, title, description, category, Icon }) {
       {/* Subtle glow effect */}
       <div className="absolute -top-20 -right-20 w-40 h-40 bg-sky-400 rounded-full filter blur-3xl opacity-0 group-hover:opacity-10 transition-opacity duration-500" />
       
-      <div className="relative flex items-start gap-6">
+      <div className="relative flex items-start gap-7">
         {/* Icon container - iPhone style with 3D effect */}
         <div className="relative flex-shrink-0">
           <div 
-            className="p-4 rounded-2xl text-white shadow-md group-hover:shadow-lg group-hover:scale-110 transition-all duration-300"
+            className="p-5 rounded-2xl text-white shadow-md group-hover:shadow-lg group-hover:scale-110 transition-all duration-300"
             style={{
               background: 'linear-gradient(145deg, #0ea5e9, #6366f1)',
               boxShadow: '0 4px 12px rgba(14,165,233,0.25), inset 0 1px 0 rgba(255,255,255,0.3), inset 0 -1px 0 rgba(0,0,0,0.05)'
@@ -41,10 +41,10 @@ export default function ToolCard({ id, title, description, category, Icon }) {
         
         {/* Content */}
         <div className="flex-1 min-w-0">
-          <h3 className="text-xl font-bold text-slate-800 mb-3 group-hover:text-sky-600 transition-colors duration-300">
+          <h3 className="text-2xl font-bold text-slate-800 mb-3 group-hover:text-sky-600 transition-colors duration-300">
             {title}
           </h3>
-          <p className="text-slate-600 leading-relaxed mb-4">{description}</p>
+          <p className="text-slate-600 leading-relaxed text-base mb-5">{description}</p>
           
           {/* Arrow indicator */}
           <div className="flex items-center gap-2 text-sky-500 font-medium">

@@ -7,7 +7,7 @@ import {
   Zap, TrendingUp, Brain, Shield, 
   ChevronRight, Star, ArrowRight, 
   BarChart3, Target, Sparkles,
-  Search, FileText, Quote, CheckCircle2, XCircle
+  Search, FileText, Quote
 } from 'lucide-react'
 
 const tools = [
@@ -30,7 +30,7 @@ const tools = [
 // iPhone-style icon component with soft 3D effect
 const FeatureIcon = ({ icon, color }) => (
   <div 
-    className="inline-flex items-center justify-center w-14 h-14 rounded-2xl shadow-lg"
+    className="inline-flex items-center justify-center w-14 h-14 rounded-2xl"
     style={{
       background: `linear-gradient(145deg, ${color} 0%, ${color}dd 100%)`,
       boxShadow: `
@@ -80,7 +80,6 @@ const stats = [
   { value: '95%', label: '建议采纳率' },
 ]
 
-// More realistic testimonials
 const testimonials = [
   {
     quote: '用了三个月，GEO评分从55提升到82。客户文章的AI引用率提升了4倍，真的很神奇。',
@@ -132,48 +131,46 @@ const testimonials = [
   },
 ]
 
-// GEO vs SEO comparison data
 const geoSeoComparison = [
   { aspect: '目标', seo: '提升网页在传统搜索引擎的排名', geo: '提升内容被 AI 模型引用的概率' },
   { aspect: '核心指标', seo: '点击率 (CTR)、跳出率、停留时间', geo: '引用率、答案收录率、品牌提及度' },
   { aspect: '优化重点', seo: '关键词密度、反向链接、元标签', geo: '语义清晰度、结构化程度、引用权威性' },
   { aspect: '内容评估', seo: '基于爬虫规则和排名因素', geo: '基于大语言模型的理解偏好' },
-  { aspect: '适用场景', seo: 'Google、Bing 传统搜索', geo: 'ChatGPT、Gemini、Perplexity 等 AI 搜索' },
+  { aspect: '适用场景', seo: 'Google、Bing 传统搜索', geo: '豆包、通义千问、Kimi 等 AI 搜索' },
 ]
+
+// Section label component - consistent across all sections
+const SectionLabel = ({ children }) => (
+  <span className="inline-block px-4 py-1.5 bg-slate-100 text-sky-600 rounded-full text-sm font-semibold">
+    {children}
+  </span>
+)
+
+// Section header component - left-aligned, consistent
+const SectionHeader = ({ label, title, subtitle, align = 'left' }) => (
+  <div className={`mb-12 ${align === 'center' ? 'text-center' : 'text-left'}`}>
+    <div className={`mb-5 ${align === 'center' ? 'flex justify-center' : ''}`}>
+      <SectionLabel>{label}</SectionLabel>
+    </div>
+    <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">{title}</h2>
+    {subtitle && (
+      <p className={`text-xl text-slate-500 ${align === 'center' ? 'max-w-2xl mx-auto' : ''}`}>
+        {subtitle}
+      </p>
+    )}
+  </div>
+)
 
 export default function Home() {
   const scrollRef = useRef(null)
 
-  // Auto-horizontal scroll for testimonials
   useEffect(() => {
     const el = scrollRef.current
     if (!el) return
     
     let scrollPos = 0
     let direction = 1
-    const speed = 0.5 // pixels per frame
-    
-    const scroll = () => {
-      if (!el) return
-      
-      const maxScroll = el.scrollWidth / 2 - el.clientWidth
-      scrollPos += speed * direction
-      
-      if (scrollPos >= maxScroll) direction = -1
-      if (scrollPos <= 0) direction = 1
-      
-      el.scrollLeft = scrollPos
-      requestAnimationFrame(scroll)
-    }
-    
-    const interval = setInterval(() => {
-      if (!el) return
-      const maxScroll = el.scrollWidth / 2 - el.clientWidth
-      scrollPos += speed * direction
-      if (scrollPos >= maxScroll) direction = -1
-      if (scrollPos <= 0) direction = 1
-      el.scrollLeft = scrollPos
-    }, 16)
+    const speed = 0.5
     
     const rafId = requestAnimationFrame(function step() {
       if (!el) return
@@ -185,10 +182,7 @@ export default function Home() {
       requestAnimationFrame(step)
     })
     
-    return () => {
-      clearInterval(interval)
-      cancelAnimationFrame(rafId)
-    }
+    return () => cancelAnimationFrame(rafId)
   }, [])
 
   return (
@@ -197,7 +191,6 @@ export default function Home() {
       <section className="relative overflow-hidden" style={{
         background: 'linear-gradient(180deg, #f0f9ff 0%, #e0f2fe 50%, #bae6fd 100%)',
       }}>
-        {/* Soft decorative blobs */}
         <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
           <div className="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] rounded-full" style={{
             background: 'radial-gradient(circle, rgba(14,165,233,0.15) 0%, transparent 70%)',
@@ -211,7 +204,6 @@ export default function Home() {
         </div>
         
         <div className="relative max-w-6xl mx-auto px-4 pt-20 pb-28">
-          {/* Badge */}
           <div className="flex justify-center mb-8">
             <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/80 backdrop-blur-sm shadow-md border border-sky-100">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
@@ -219,7 +211,6 @@ export default function Home() {
             </div>
           </div>
           
-          {/* Main heading */}
           <h1 className="text-center mb-6">
             <span className="block text-5xl md:text-6xl lg:text-7xl font-bold text-slate-800 mb-4 tracking-tight">
               让 AI 更好地
@@ -239,7 +230,6 @@ export default function Home() {
             提升在 <span className="text-sky-600 font-semibold">Gemini</span>、<span className="text-indigo-600 font-semibold">ChatGPT</span>、<span className="text-violet-600 font-semibold">Perplexity</span>、<span className="text-amber-600 font-semibold">豆包</span>、<span className="text-emerald-600 font-semibold">通义千问</span>、<span className="text-pink-600 font-semibold">Kimi</span>、<span className="text-orange-600 font-semibold">元宝</span> 等 AI 搜索引擎中的引用率
           </p>
           
-          {/* CTA */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-5">
             <a 
               href="#tools" 
@@ -262,7 +252,6 @@ export default function Home() {
             </a>
           </div>
           
-          {/* Stats row */}
           <div className="mt-20 flex flex-wrap justify-center gap-12">
             {stats.map((s, i) => (
               <div key={i} className="text-center">
@@ -275,7 +264,6 @@ export default function Home() {
           </div>
         </div>
         
-        {/* Bottom wave */}
         <div className="absolute bottom-0 left-0 right-0">
           <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M0 80L60 70C120 60 240 40 360 35C480 30 600 30 720 35C840 40 960 50 1080 55C1200 60 1320 60 1380 60L1440 60V80H1380C1320 80 1200 80 1080 80C960 80 840 80 720 80C600 80 480 80 360 80C240 80 120 80 60 80H0Z" fill="white" />
@@ -283,18 +271,15 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ========== GEO INTRO SECTION (Below Hero) ========== */}
+      {/* ========== GEO INTRO SECTION ========== */}
       <section id="geo-intro" className="py-20 bg-white">
         <div className="max-w-6xl mx-auto px-4">
-          <div className="text-center mb-12">
-            <span className="inline-block px-4 py-1.5 bg-sky-100 text-sky-700 rounded-full text-sm font-semibold mb-5">核心概念</span>
-            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">什么是 GEO？</h2>
-            <p className="text-xl text-slate-500 max-w-3xl mx-auto">
-              Generative Engine Optimization — AI 时代的内容优化新范式
-            </p>
-          </div>
+          <SectionHeader 
+            label="核心概念" 
+            title="什么是 GEO？" 
+            subtitle="Generative Engine Optimization — AI 时代的内容优化新范式"
+          />
           
-          {/* GEO Definition */}
           <div className="max-w-4xl mx-auto mb-14">
             <div className="bg-gradient-to-br from-sky-50 via-indigo-50 to-violet-50 rounded-3xl p-10 border border-sky-100">
               <div className="flex items-start gap-5 mb-6">
@@ -329,9 +314,8 @@ export default function Home() {
             </div>
           </div>
           
-          {/* GEO vs SEO Comparison Table */}
           <div className="max-w-5xl mx-auto">
-            <h3 className="text-2xl font-bold text-slate-900 text-center mb-8">
+            <h3 className="text-2xl font-bold text-slate-900 mb-8">
               GEO vs 传统 SEO：核心差异
             </h3>
             <div className="overflow-x-auto">
@@ -366,9 +350,8 @@ export default function Home() {
             </div>
           </div>
           
-          {/* GEO Key Factors */}
           <div className="max-w-4xl mx-auto mt-14">
-            <h3 className="text-2xl font-bold text-slate-900 text-center mb-8">GEO 优化的四大核心要素</h3>
+            <h3 className="text-2xl font-bold text-slate-900 mb-8">GEO 优化的四大核心要素</h3>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
               {[
                 { num: '01', title: '语义清晰度', desc: '使用自然流畅的语言表达核心观点，让 AI 能准确理解内容意图', color: '#0ea5e9' },
@@ -392,15 +375,13 @@ export default function Home() {
       {/* ========== TOOLS SECTION ========== */}
       <section id="tools" className="py-24" style={{ background: 'linear-gradient(180deg, #ffffff 0%, #f0f9ff 100%)' }}>
         <div className="max-w-6xl mx-auto px-4">
-          <div className="text-center mb-16">
-            <span className="inline-block px-4 py-1.5 bg-sky-100 text-sky-700 rounded-full text-sm font-semibold mb-5">核心工具</span>
-            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">选择适合你的工具</h2>
-            <p className="text-xl text-slate-500 max-w-2xl mx-auto">
-              专为 GEO 时代设计的内容优化与分析工具
-            </p>
-          </div>
+          <SectionHeader 
+            label="核心工具" 
+            title="选择适合你的工具" 
+            subtitle="专为 GEO 时代设计的内容优化与分析工具"
+          />
           
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
             {tools.map((tool, index) => (
               <div key={tool.id} className="animate-fade-in-up" style={{ animationDelay: `${index * 0.1}s` }}>
                 <ToolCard {...tool} />
@@ -413,10 +394,10 @@ export default function Home() {
       {/* ========== FEATURES SECTION ========== */}
       <section id="features" className="py-24 bg-white">
         <div className="max-w-6xl mx-auto px-4">
-          <div className="text-center mb-16">
-            <span className="inline-block px-4 py-1.5 bg-indigo-100 text-indigo-700 rounded-full text-sm font-semibold mb-5">核心优势</span>
-            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">为什么选择 Questech</h2>
-          </div>
+          <SectionHeader 
+            label="核心优势" 
+            title="为什么选择 Questech" 
+          />
           
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {features.map((f, i) => (
@@ -438,10 +419,10 @@ export default function Home() {
       {/* ========== HOW IT WORKS ========== */}
       <section className="py-24" style={{ background: 'linear-gradient(180deg, #f0f9ff 0%, #e0f2fe 100%)' }}>
         <div className="max-w-6xl mx-auto px-4">
-          <div className="text-center mb-16">
-            <span className="inline-block px-4 py-1.5 bg-emerald-100 text-emerald-700 rounded-full text-sm font-semibold mb-5">工作原理</span>
-            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">三步提升内容 GEO 表现</h2>
-          </div>
+          <SectionHeader 
+            label="工作原理" 
+            title="三步提升内容 GEO 表现" 
+          />
           
           <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
             {[
@@ -469,17 +450,18 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ========== TESTIMONIALS (Auto-scroll) ========== */}
+      {/* ========== TESTIMONIALS ========== */}
       <section className="py-24 bg-white overflow-hidden">
         <div className="max-w-6xl mx-auto px-4 mb-12">
-          <div className="text-center">
-            <span className="inline-block px-4 py-1.5 bg-amber-100 text-amber-700 rounded-full text-sm font-semibold mb-5">用户反馈</span>
+          <div className="text-left">
+            <div className="mb-5">
+              <SectionLabel>用户反馈</SectionLabel>
+            </div>
             <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">真实用户的使用体验</h2>
             <p className="text-slate-500">以下评价均来自真实用户反馈</p>
           </div>
         </div>
         
-        {/* Auto-scrolling testimonials */}
         <div 
           ref={scrollRef}
           className="flex gap-6 overflow-x-auto scrollbar-hide pb-4 px-4"
@@ -489,7 +471,6 @@ export default function Home() {
             scrollBehavior: 'smooth',
           }}
         >
-          {/* Duplicate testimonials for seamless loop */}
           {[...testimonials, ...testimonials].map((t, i) => (
             <div 
               key={i} 
@@ -498,20 +479,17 @@ export default function Home() {
                 boxShadow: '0 4px 20px rgba(14,165,233,0.08), 0 2px 8px rgba(0,0,0,0.04)'
               }}
             >
-              {/* Stars */}
               <div className="flex gap-1 mb-4">
                 {[...Array(t.rating)].map((_, j) => (
                   <Star key={j} className="w-4 h-4 text-amber-400 fill-amber-400" />
                 ))}
               </div>
               
-              {/* Quote */}
               <div className="relative mb-5">
                 <Quote className="absolute -top-1 -left-1 w-5 h-5 text-sky-200" />
                 <p className="text-slate-700 leading-relaxed pl-4 text-[15px]">"{t.quote}"</p>
               </div>
               
-              {/* Author */}
               <div className="flex items-center gap-3 pt-4 border-t border-slate-100">
                 <div className={`w-10 h-10 rounded-full bg-gradient-to-br ${t.avatarBg} flex items-center justify-center text-white font-bold text-sm shadow-md`}>
                   {t.avatar}
@@ -525,7 +503,6 @@ export default function Home() {
           ))}
         </div>
         
-        {/* Scroll hint */}
         <div className="text-center mt-6 text-slate-400 text-sm">
           ← 拖动或自动滚动查看更多 →
         </div>
@@ -534,7 +511,9 @@ export default function Home() {
       {/* ========== CTA SECTION ========== */}
       <section className="py-24" style={{ background: 'linear-gradient(180deg, #f0f9ff 0%, #e0f2fe 100%)' }}>
         <div className="max-w-4xl mx-auto px-4 text-center">
-          <span className="inline-block px-4 py-1.5 bg-sky-100 text-sky-700 rounded-full text-sm font-semibold mb-5">免费使用</span>
+          <div className="mb-5">
+            <span className="inline-block px-4 py-1.5 bg-slate-100 text-sky-600 rounded-full text-sm font-semibold">免费使用</span>
+          </div>
           <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">现在就开始优化你的内容</h2>
           <p className="text-xl text-slate-500 mb-10">
             两个核心工具均可免费使用，无需注册，即开即用
