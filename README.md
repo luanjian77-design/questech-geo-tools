@@ -1,46 +1,15 @@
-# Questech GEO Tools
+# QuestTech · DSE 備試空間
 
-GEO（生成式引擎优化）工具站，帮助内容创作者提升在 AI 搜索引擎中的可见性。
+DSE 重新設計首版；取代原 GEO 工具站。以繁體中文整理 HKDSE 學科資源、試題入口、考試日程與升學資訊。
 
-## 功能
+## 啟動
 
-- **内容优化工具** - 分析内容并提供 GEO 优化建议
-- **内容分析工具** - 评估网页内容的 AI 亲和度
-
-## 技术栈
-
-- React 19
-- Vite
-- Tailwind CSS v4
-- Cloudflare Pages 部署
-
-## 快速开始
-
-```bash
-# 安装依赖
-npm install
-
-# 本地开发
-npm run dev
-
-# 构建生产版本
+```sh
+npm ci
+npm run dev -- --host 127.0.0.1 --port 4178
 npm run build
-
-# 预览构建结果
-npm run preview
 ```
 
-## 部署到 Cloudflare Pages
+站內工具包括 Best 5／Best 6、專注計時、搜尋、本機收藏及溫習清單。試卷與收生資料目前以有來源的外部入口提供，沒有建立站內題庫或課程收生資料庫。
 
-1. 将此仓库推送到你的 GitHub 账户
-2. 登录 [Cloudflare Dashboard](https://dash.cloudflare.com)
-3. 进入 Pages → 创建项目 → 连接到 GitHub
-4. 选择 `questech-geo-tools` 仓库
-5. 构建配置：
-   - **构建命令**: `npm run build`
-   - **构建输出目录**: `dist`
-6. 点击部署
-
-## 域名配置
-
-在 Cloudflare Pages 设置中，添加自定义域名 `questech-bm.com`，Cloudflare 会自动配置 SSL 和路由。
+完整範圍、資料來源、已驗證及未驗證項目見 [DSE-REBUILD.md](DSE-REBUILD.md)。2026-11-04 已獲授權發布首版；正式部署結果以當次發布核驗為準。舊 GEO 版本的回退點為本地 Git tag `backup/questech-before-dse-20261104`。
