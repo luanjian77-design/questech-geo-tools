@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { ArrowUpRight, ArrowRight, Search, LayoutDashboard, BookOpen, CalendarDays, Library, Timer, GraduationCap, Bookmark, Plus, X, Menu, Play, Pause, RotateCcw, ExternalLink, ChevronRight, CheckCircle2, Sun, Calculator, Focus, Trash2 } from 'lucide-react'
+import { ArrowUpRight, ArrowRight, Search, LayoutDashboard, BookOpen, CalendarDays, Library, Timer, GraduationCap, Bookmark, Plus, X, Menu, Play, Pause, RotateCcw, ExternalLink, ChevronRight, CheckCircle2, Sun, Calculator, Focus, Trash2, LogOut } from 'lucide-react'
 import { subjects, resources, milestones, officialDates, officialSubjects, checkedOn, examStart, daysUntil, bestScore } from './dse/data'
 
 const navigation = [ ['home', '學習總覽', LayoutDashboard], ['subjects', '學科資源', BookOpen], ['papers', '歷屆試題', Library], ['schedule', '考試日程', CalendarDays], ['tools', '學習工具', Timer], ['admissions', '升學資訊', GraduationCap], ['saved', '我的收藏', Bookmark] ]
@@ -47,13 +47,13 @@ export default function App() {
   return <div className="app-shell">
     {menu && <button className="menu-overlay" aria-label="關閉導覽" onClick={() => setMenu(false)} />}
     <aside className={`sidebar ${menu ? 'is-open' : ''}`}>
-      <a href="#home" className="brand"><span className="brand-symbol">q<span>.</span></span><span>QuestTech<small>DSE STUDY SPACE</small></span></a>
-      <div className="workspace-label"><span className="online-dot" /> 我的備試空間 <span>2027</span></div>
+      <a href="#home" className="brand"><span className="brand-symbol">q<span>.</span></span><span>QuestTech<small>FAMILY DSE SPACE</small></span></a>
+      <div className="workspace-label"><span className="online-dot" /> 家庭備試空間 <span>2027</span></div>
       <p className="nav-caption">WORKSPACE</p>
       <nav aria-label="主要導覽">{navigation.map(([id, name, icon]) => <a key={id} href={`#${id}`} className={`nav-item ${page === id ? 'active' : ''}`} aria-current={page === id ? 'page' : undefined} onClick={() => setMenu(false)}><Icon icon={icon} /><span>{name}</span>{id === 'saved' && saved.length > 0 && <b>{saved.length}</b>}{id === page && <span className="nav-dot" />}</a>)}</nav>
       <div className="sidebar-bottom"><div className="quiet-note"><span className="little-spark">✳</span><strong>一步一步，也在前進。</strong><p>把今天能做的事，做好就好。</p></div><a href={officialSubjects} {...external} className="official-link">考評局官方資訊 <ArrowUpRight size={15} /></a><div className="sidebar-foot">為專注而設計 <span>v0.1</span></div></div>
     </aside>
-    <div className="main-shell"><header className="topbar"><div className="breadcrumb"><button className="mobile-menu icon-button" aria-label="開啟導覽" onClick={() => setMenu(!menu)}><Menu size={22} /></button><span>我的備試空間</span><ChevronRight size={14} /><strong>{query.trim() ? '搜尋結果' : title}</strong></div><div className="header-right"><span className="year-label">HKDSE 2027</span><span className="avatar">Q</span></div></header>
+    <div className="main-shell"><header className="topbar"><div className="breadcrumb"><button className="mobile-menu icon-button" aria-label="開啟導覽" onClick={() => setMenu(!menu)}><Menu size={22} /></button><span>家庭備試空間</span><ChevronRight size={14} /><strong>{query.trim() ? '搜尋結果' : title}</strong></div><div className="header-right"><span className="year-label">HKDSE 2027</span><span className="avatar">Q</span><form action="/family/logout" method="post"><button className="icon-button" type="submit" aria-label="退出家庭空間" title="退出家庭空間"><LogOut size={17} /></button></form></div></header>
     <main id="main-content"><div className="page-heading"><div><p className="eyebrow">{page === 'home' ? today : 'YOUR DSE, ALL IN ONE PLACE'}</p><h1>{query.trim() ? '找到下一步' : page === 'home' ? `${hour < 12 ? '早晨' : '你好'}，今天也向目標靠近一點` : title}<span className="heading-dot">.</span></h1><p className="heading-subtitle">{query.trim() ? `搜尋「${query}」的學科與資源` : page === 'home' ? '少一點尋找，多一點專注。你的 DSE 資訊與工具，都在這裡。' : '把需要的資訊整理好，讓每一次溫習更有方向。'}</p></div><span className="heading-stamp"><Sun size={29} />STAY CURIOUS</span></div>
     <div className="search-box"><Search size={20} /><input ref={searchInput} aria-label="搜尋學科、試題或工具" placeholder="搜尋學科、試題或工具…" value={query} onChange={e => setQuery(e.target.value)} />{query ? <button className="icon-button" aria-label="清除搜尋" onClick={() => setQuery('')}><X size={17} /></button> : <kbd>/</kbd>}</div>
     {query.trim() ? <><Section title="學科" count={subjects.filter(matches).length} />{subjectGrid(subjects)}<Section title="工具與資源" count={resources.filter(matches).length + toolNames.length} />{toolNames.map(s => <button className="search-tool-link" key={s} onClick={() => go('tools')}>{s}<ArrowRight size={18} /></button>)}{resourceList(resources)}</> : <>
@@ -73,7 +73,7 @@ export default function App() {
     {page === 'saved' && <><p className="info-note">收藏保存在目前的瀏覽器，不會同步到其他裝置。</p>{savedItems.length ? resourceList(savedItems) : <Empty text="還沒有收藏。到學科資源或工具列表，點一下書籤就能加進來。" action="瀏覽學科資源" onAction={() => go('subjects')} />}</>}
     {['papers', 'subjects'].includes(page) && <><Section title="其他學習資源" />{resourceList(resources.filter(r => ['學科資源', '考試資訊'].includes(r.category)))}</>}
     </>}
-    <footer><span><b>QuestTech</b> · 給自己的 DSE 備試空間</span><span>收藏與清單只存於本機 <span className="footer-dot">·</span> 資訊以官方最新公布為準</span></footer></main></div>
+    <footer><span><b>QuestTech</b> · 家庭專用 DSE 備試空間</span><span>收藏與清單只存於本機 <span className="footer-dot">·</span> 資訊以官方最新公布為準</span></footer></main></div>
   </div>
 }
 function Section({ title, subtitle, action, onAction, count }) { return <div className="section-heading"><div><h2>{title}{count !== undefined && <span className="count-badge">{count}</span>}</h2>{subtitle && <p>{subtitle}</p>}</div>{action && <button className="text-button" onClick={onAction}>{action}<ArrowRight size={15} /></button>}</div> }
