@@ -13,7 +13,8 @@ const securityHeaders = {
   'Cloudflare-CDN-Cache-Control': 'no-store',
   'X-Robots-Tag': 'noindex, nofollow, noarchive',
   'X-Content-Type-Options': 'nosniff',
-  'Referrer-Policy': 'no-referrer',
+  // no-referrer makes native form POSTs send Origin:null and breaks CSRF checks.
+  'Referrer-Policy': 'same-origin',
   'X-Frame-Options': 'DENY',
 }
 function reply(body, status = 200, extra = {}) {

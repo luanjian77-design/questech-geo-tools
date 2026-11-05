@@ -78,3 +78,9 @@ await test('configuration diagnostics never expose secret values',async()=>{
   assert.equal(r.status,503);assert.equal(r.headers.get('x-family-setup'),status);assert.equal(await r.text(),'家庭入口準備中，請聯絡家庭管理人。')
  }
 })
+
+await test('native form-compatible policy while null Origin remains forbidden',async()=>{
+ const page=await worker.fetch(request('/family/login'),env)
+ assert.equal(page.headers.get('referrer-policy'),'same-origin')
+ assert.equal((await worker.fetch(form(env.FAMILY_PASSWORD,'192.0.2.30',{Origin:'null'}),env)).status,403)
+})

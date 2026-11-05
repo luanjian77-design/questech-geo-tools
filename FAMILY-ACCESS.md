@@ -47,3 +47,11 @@ Cloudflare帳戶層級 Bulk Redirect：
 - 免費額度：https://developers.cloudflare.com/pages/functions/pricing/
 
 當次發布與驗證結果記錄在Agent工作區的每日記憶及發布證據，不把尚未完成的步驟寫成已完成。
+
+## 已修正的瀏覽器表單相容性問題
+
+- 2026-11-05：`Referrer-Policy: no-referrer` 會讓一般HTML表單POST帶 `Origin: null`，與嚴格同源驗證衝突，導致正常使用者也看到403 Forbidden。
+- 改用 `Referrer-Policy: same-origin`：同源表單保留正確Origin，外站不取得Referer；伺服器仍拒絕null及跨站Origin。不可藉由放行null、移除CSRF驗證或公開資產來修復。
+- 先前curl測試人工指定Origin，所以沒有覆蓋瀏覽器對回應頭的處理；之後必須用真實瀏覽器執行原生form POST，不能只測fetch或合成Request。
+- 使用明確的測試錯誤密碼驗證來源檢查：修正前403、修正後應為正常密碼錯誤401；真實家庭密碼仍由使用者自行輸入驗證。
+- 參考：https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Referrer-Policy#effect_on_the_origin_header
