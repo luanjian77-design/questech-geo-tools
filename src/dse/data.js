@@ -1,6 +1,7 @@
 export const officialDates = 'https://www.hkeaa.edu.hk/en/hkdse/Event_timetable/'
 export const officialSubjects = 'https://www.hkeaa.edu.hk/tc/hkdse/assessment/subject_information/'
-export const examStart = '2027-04-06'
+// Family-selected countdown target, not an official published timetable.
+export const examStart = '2028-04-06'
 export const checkedOn = '2026-11-04'
 
 export const subjects = [
