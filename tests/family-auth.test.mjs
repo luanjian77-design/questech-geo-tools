@@ -10,6 +10,7 @@ await test('missing bindings fail closed, including direct asset requests', asyn
  for (const path of ['/', '/assets/app.js', '/some/deep/path']) {
   const r = await worker.fetch(request(path), {})
   assert.equal(r.status, 503)
+  assert.equal(r.headers.get('x-family-setup'), 'password-missing')
   assert.match(r.headers.get('cache-control'), /no-store/)
  }
 })
@@ -69,4 +70,11 @@ await test('production/preview hosts redirect to canonical protected domain', as
 await test('runtime asset failures never fall through to content',async()=>{
  const r=await worker.fetch(request('/',{headers:{Cookie:session}}),{...env,ASSETS:{fetch:()=>{throw new Error('private secret must not leak')}}})
  assert.equal(r.status,503);assert.ok(!(await r.text()).includes('private secret'))
+})
+
+await test('configuration diagnostics never expose secret values',async()=>{
+ for(const [changes,status] of [[{FAMILY_PASSWORD:'short'},'password-policy'],[{FAMILY_SESSION_KEY:''},'session-key-missing'],[{FAMILY_SESSION_KEY:'short'},'session-key-policy']]){
+  const r=await worker.fetch(request('/family/login'),{...env,...changes})
+  assert.equal(r.status,503);assert.equal(r.headers.get('x-family-setup'),status);assert.equal(await r.text(),'家庭入口準備中，請聯絡家庭管理人。')
+ }
 })

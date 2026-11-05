@@ -88,9 +88,12 @@ function loginPage(error = '') {
 function page(error = '', status = 200) {
   return reply(loginPage(error), status, { 'Content-Type': 'text/html; charset=utf-8', 'Content-Security-Policy': "default-src 'none'; style-src 'unsafe-inline'; form-action 'self'; base-uri 'none'; frame-ancestors 'none'" })
 }
-function configured(env) {
-  return typeof env.FAMILY_PASSWORD === 'string' && env.FAMILY_PASSWORD.length >= 16 && env.FAMILY_PASSWORD.length <= 256
-    && typeof env.FAMILY_SESSION_KEY === 'string' && env.FAMILY_SESSION_KEY.length >= 32
+function configurationState(env) {
+  if (typeof env.FAMILY_PASSWORD !== 'string' || !env.FAMILY_PASSWORD) return 'password-missing'
+  if (env.FAMILY_PASSWORD.length < 16 || env.FAMILY_PASSWORD.length > 256) return 'password-policy'
+  if (typeof env.FAMILY_SESSION_KEY !== 'string' || !env.FAMILY_SESSION_KEY) return 'session-key-missing'
+  if (env.FAMILY_SESSION_KEY.length < 32) return 'session-key-policy'
+  return 'ready'
 }
 export default {
   async fetch(request, env) {
@@ -105,7 +108,8 @@ export default {
       if (url.pathname === '/robots.txt') return reply('User-agent: *\nDisallow: /\n', 200, { 'Content-Type': 'text/plain; charset=utf-8' })
       if (/^\/(?:_worker\.js|_routes\.json)(?:\/|$)/.test(url.pathname)) return reply('Not found', 404)
       // Misconfiguration is always fail-closed, including for static assets.
-      if (!configured(env)) return reply('家庭入口準備中，請聯絡家庭管理人。', 503, { 'Content-Type': 'text/plain; charset=utf-8', 'Retry-After': '300' })
+      const setup = configurationState(env)
+      if (setup !== 'ready') return reply('家庭入口準備中，請聯絡家庭管理人。', 503, { 'Content-Type': 'text/plain; charset=utf-8', 'Retry-After': '300', 'X-Family-Setup': setup })
       const key = await keyFor(env)
       if (url.pathname === '/family/logout') {
         if (request.method !== 'POST') return reply('Method not allowed', 405, { Allow: 'POST' })
