@@ -1,8 +1,9 @@
 export const officialDates = 'https://www.hkeaa.edu.hk/en/hkdse/Event_timetable/'
 export const officialSubjects = 'https://www.hkeaa.edu.hk/tc/hkdse/assessment/subject_information/'
+export const examYear = 2028
 // Family-selected countdown target, not an official published timetable.
-export const examStart = '2028-04-06'
-export const checkedOn = '2026-11-04'
+export const examStart = `${examYear}-04-06`
+export const checkedOn = '2026-11-05'
 
 export const subjects = [
   { id: 'chinese', name: '中國語文', en: 'Chinese Language', mark: '文', group: '核心科目', color: 'peach', description: '閱讀、寫作與指定篇章', url: 'https://dse.best/chinese' },
@@ -19,7 +20,7 @@ export const subjects = [
 
 export const resources = [
   { id: 'official-subjects', title: '考評局學科資料', detail: '課程、考核模式與各科官方資料', category: '考試資訊', url: officialSubjects, source: '考評局' },
-  { id: 'dates', title: '2027 重要日期', detail: '報考、考試與放榜日程', category: '考試資訊', url: officialDates, source: '考評局' },
+  { id: 'dates', title: `${examYear} 考試安排`, detail: '年度日程待核實，請以當年度官方通告為準', category: '考試資訊', url: officialDates, source: '考評局' },
   { id: 'papers', title: '歷屆試題與資源', detail: '從參考站的科目入口查找試題', category: '歷屆試題', url: 'https://dse.best/', source: 'dse.best' },
   { id: 'physics-papers', title: '物理試題索引', detail: '按年份及課題查找物理練習', category: '歷屆試題', url: 'https://dse.best/physics', source: 'dse.best' },
   { id: 'chem-papers', title: '化學試題索引', detail: '按科目查找化學備試資料', category: '歷屆試題', url: 'https://dse.best/chemistry', source: 'dse.best' },
@@ -36,12 +37,13 @@ export const resources = [
   { id: 'writing-zh', title: '中文寫作批改參考', detail: '外部 AI 工具；使用前查看其私隱條款', category: '延伸工具', url: 'https://dse.best/grader/chinese', source: 'dse.best' },
 ]
 
+// Do not relabel last year's published dates as this year's official timetable.
 export const milestones = [
-  { date: '2026-11-16', end: '2026-12-04', title: '遲報名／更改報考科目', type: '報考安排', tentative: true },
-  { date: '2026-11-30', title: '退考申請截止', type: '報考安排' },
-  { date: '2027-03-09', end: '2027-03-18', title: '英國語文口試', type: '考試日程', tentative: true },
-  { date: '2027-04-06', end: '2027-05-03', title: '甲類科目筆試', type: '考試日程', tentative: true },
-  { date: '2027-07-14', title: 'DSE 成績公布', type: '放榜安排', tentative: true },
+  { date: examStart, title: `HK DSE ${examYear} 備考目標日`, type: '家庭備考計畫', status: 'custom' },
+  { date: null, title: `${examYear} 報名及報考安排`, type: '報考安排', status: 'pending' },
+  { date: null, title: `${examYear} 英國語文口試`, type: '考試日程', status: 'pending' },
+  { date: null, title: `${examYear} 甲類科目筆試`, type: '考試日程', status: 'pending' },
+  { date: null, title: `${examYear} 成績公布`, type: '放榜安排', status: 'pending' },
 ]
 
 export function daysUntil(date, now = new Date()) {
